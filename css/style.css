@@ -1,0 +1,175 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0 !important;
+}
+p {
+  margin: 0 !important;
+}
+h2,
+h3 {
+  font-size: unset !important;
+}
+label {
+  user-select: none;
+}
+
+/* .inform,
+.inform2,
+#titlecontainer {
+  width: 150px;
+} */
+
+.inform input,
+.inform2 input,
+#titlecontainer input {
+  width: 100%;
+}
+#col,
+#row,
+#cartno,
+#width,
+#height,
+#positionx,
+#positiony,
+#cartw,
+#carth,
+#bordersize,
+#bordercolor,
+#paddingx,
+#paddingy,
+#titlesize {
+  width: 70px;
+  margin-right: 30px;
+}
+h5 {
+  font-size: 16px;
+}
+#cart {
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: 1px solid #000;
+  height: 250px;
+  overflow: hidden;
+  position: relative;
+}
+#cart.cells {
+  height: unset;
+  grid-template-rows: unset !important;
+}
+.cells > * {
+  position: relative !important;
+  left: 0 !important;
+  top: 0 !important;
+  right: 0 !important;
+  transform: translateY(0%) !important;
+  border: 3px solid #000;
+  height: auto;
+  margin: 0;
+}
+
+#cart div,
+#cart h3,
+#cart h4,
+#cart h5 {
+  z-index: 11;
+}
+#cart h4 {
+  font-size: 15px;
+}
+.dragging h1 {
+  left: 10%;
+  top: 10px;
+}
+
+.dragging .price {
+  left: 74%;
+  top: 80%;
+  font-size: 13px;
+}
+.dragging .expiration {
+  left: 50%;
+  transform: translateX(-50%);
+  top: 80%;
+  font-size: 12px;
+}
+.dragging h3 {
+  left: 50%;
+  transform: translateX(-50%);
+  top: 150px;
+}
+.dragging h4 {
+  left: 50%;
+  transform: translateX(-50%);
+  top: 40px;
+  font-size: 12px;
+}
+
+.dragging h5 {
+  left: 10px;
+  top: 90%;
+  font-size: 11px;
+}
+.free > * {
+  left: 50%;
+  top: 50%;
+}
+
+input:disabled,
+select:disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed;
+}
+.sortable-ghost {
+  opacity: 0.5;
+}
+.sortable-chosen {
+  user-select: text !important;
+}
+.icons {
+  /* resize: both;
+  overflow: hidden; */
+  width: 50px;
+  height: 50px;
+}
+.icons img {
+  width: 100%;
+  height: 100%;
+}
+
+#qrCode {
+  left: 50%;
+  top: 64px;
+  transform: translateX(-50%);
+}
+#qrCode img {
+  width: 60px;
+  margin: auto;
+}
+-moz-::selection {
+  background: transparent;
+}
+::selection {
+  background: transparent;
+}
+input::selection {
+  background: rgb(20, 82, 189);
+  color: #fff;
+}
+p.inform,
+p.inform2 {
+  display: none;
+}
+#dateshow {
+  left: 10px;
+  top: 10px;
+  font-size: 10px;
+}

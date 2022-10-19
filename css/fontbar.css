@@ -1,0 +1,43 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+#fontedit {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  gap: 5px;
+  background-color: #1a88b9;
+  padding: 10px;
+  position: absolute;
+  left: 30%;
+  top: 58%;
+  transform: translate(-38%, -58%);
+}
+
+#fontedit input:not(input[type="color"]),
+#fontedit button,
+#fontedit select {
+  border: none;
+  padding: 5px;
+}
+#fontedit button {
+  cursor: pointer;
+}
+
+#fontedit button:last-of-type {
+  font-weight: bold;
+}
+#fontedit button:hover {
+  background-color: #ddd;
+}
+h1 {
+  position: relative;
+}
+.bold {
+  font-weight: bold;
+}
+#fontedit div {
+  user-select: none;
+}

@@ -1,0 +1,12 @@
+#cart.cells {
+  grid-template-rows: repeat(auto-fill, minmax(73px, 1fr));
+  display: grid;
+}
+.cells > div,
+.cells h3,
+.cells h4,
+.cells h5 {
+  border: 3px solid #000;
+  margin: 0;
+  padding: 8px;
+}
