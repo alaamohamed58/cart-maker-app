@@ -33,6 +33,26 @@ label {
 #titlecontainer input {
   width: 100%;
 }
+
+#info-action button.active {
+  background-color: #0d6efd;
+  color: #fff;
+}
+
+#basic-info,
+#advanced-info {
+  border: 1px solid #02cbf3;
+  padding: 8px;
+  width: 50%;
+}
+
+#basic-info {
+  border-radius: 0px 0 16px 0px;
+}
+#advanced-info {
+  border-radius: 0px 0 0px 16px;
+}
+
 #col,
 #row,
 #cartno,

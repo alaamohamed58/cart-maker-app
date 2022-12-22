@@ -158,12 +158,6 @@ function selectIcon() {
 
       iconContainer.appendChild(iconImage);
       iconImage.src = selectedIcon;
-
-      //filter
-
-      // iconFilter.oninput = () => {
-      //   iconImage.style.filter = iconFilter.value;
-      // };
     }
     cart.prepend(iconContainer);
 
@@ -209,6 +203,8 @@ borderSizeChanger.addEventListener("input", () => {
 });
 let dragValue;
 let dragging = false;
+
+// drag and drop
 function move() {
   const element = document.querySelector(".dragging");
 
@@ -290,19 +286,22 @@ fetch("https://system-511f7-default-rtdb.firebaseio.com/pass.json")
   });
 
 //onclick;
-const printBtn = document.getElementById("download"),
-  // colNum = document.getElementById("col"),
-  // rowNum = document.getElementById("row"),
-  cartNo = document.getElementById("cartno");
+const printBtn = document.getElementById("download");
 const cartContainer = document.getElementById("cartContainer");
+
+const selectColRow = document.getElementById("cart-num");
+
 const clone = cart.cloneNode();
 let widthCont = document.getElementById("cartContainer").offsetWidth;
 let ser = document.getElementById("serCart");
-// rowNum.onchange = () => {
-//   cartNo.value = rowNum.value * colNum.value;
-// };
+let rowNum, colNum;
+
+selectColRow.addEventListener("change", () => {
+  document.getElementById("cart-print").remove();
+});
+
 printBtn.onclick = () => {
-  let copy = +cartNo.value;
+  let copy = parseInt(selectColRow.value);
 
   let myContainer = document.createElement("div"),
     margX = document.getElementById("paddingx"),
@@ -321,10 +320,11 @@ printBtn.onclick = () => {
   max-width : 760px ;
   margin: auto;
   `;
-
+  let div = document.createElement("div");
+  div.innerHTML = "";
   setBackGround();
   for (let i = 0; i < copy; i++) {
-    let div = document.createElement("div");
+    div = document.createElement("div");
     div.innerHTML = cart.innerHTML;
     div.id = clone.id;
     div.className = clone.className;
@@ -362,11 +362,11 @@ printBtn.onclick = () => {
   let pageBreaks = document.createElement("div");
   pageBreaks.className = "html2pdf__page-break";
   // console.log(document.querySelectorAll("#cart-print #cart:nth-child(6n)"));
-  document.querySelector("#cart-print #cart:nth-child(6n)").after(pageBreaks);
+  // document.querySelector("#cart-print #cart:nth-child(6n)").after(pageBreaks);
 
   var element = document.getElementById("cart-print");
   var opt = {
-    margin: [0, 0, 0, 10], //top, left, buttom, right
+    margin: [0, 0, 0, 1], //top, left, buttom, right
     filename: "carts.pdf",
     image: { type: "jpg", quality: 0.98 },
     html2canvas: { dpi: 192, scale: 2, letterRendering: true, useCORS: true },
@@ -376,84 +376,114 @@ printBtn.onclick = () => {
   html2pdf(element, opt);
 };
 
-checkPage.onclick = () => {
-  let copy = +cartNo.value;
+// checkPage.onclick = () => {
+//   let copy = parseInt(rowNum) * parseInt(colNum);
 
-  let myContainer = document.createElement("div"),
-    margX = document.getElementById("paddingx"),
-    margY = document.getElementById("paddingy"),
-    bR = document.getElementById("bordersize");
+//   let myContainer = document.createElement("div"),
+//     margX = document.getElementById("paddingx"),
+//     margY = document.getElementById("paddingy"),
+//     bR = document.getElementById("bordersize");
 
-  myContainer.style.display = "grid";
+//   myContainer.style.display = "grid";
 
-  myContainer.setAttribute("id", "cart-print");
-  myContainer.style.cssText = `
-  display : flex;
-  flex-wrap : wrap;
-  max-width : 760px ;
-  background: #fff;
-  padding: 10px;
-  margin: auto;
-  `;
+//   myContainer.setAttribute("id", "cart-print");
+//   myContainer.style.cssText = `
+//   display : flex;
+//   flex-wrap : wrap;
+//   max-width : 760px ;
+//   background: #fff;
+//   padding: 10px;
+//   margin: auto;
+//   `;
 
-  let bigContainer = document.createElement("div");
-  bigContainer.id = "bigContainer";
-  bigContainer.style.cssText = `
+//   let bigContainer = document.createElement("div");
+//   bigContainer.id = "bigContainer";
+//   bigContainer.style.cssText = `
 
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  background-color: rgb(221, 221, 221);
-  width: 100%;
-  height: auto;
-  z-index: 1111;
+//   position: absolute;
+//   top: 0px;
+//   left: 0px;
+//   background-color: rgb(221, 221, 221);
+//   width: 100%;
+//   height: auto;
+//   z-index: 1111;
 
+//     `;
+//   let div = document.createElement("div");
+//   div.style.cssText = `
+//   position: absolute;
+//   right: 50px;
+//   top: 50px;
+//   font-weight: bold;
+//   color: red;
+//   font-size: 30px;
+//   cursor: pointer;
+//   `;
+//   div.addEventListener("click", () => {
+//     bigContainer.remove();
+//   });
+//   div.innerHTML = `X`;
+//   bigContainer.appendChild(myContainer);
+//   bigContainer.prepend(div);
+//   setBackGround();
+//   for (let i = 0; i < copy; i++) {
+//     let div = document.createElement("div");
+//     div.innerHTML = cart.innerHTML;
+//     div.id = clone.id;
+//     div.className = clone.className;
+//     let flexRadioDefault2 = document.getElementById("flexRadioDefault2");
 
-    `;
-  let div = document.createElement("div");
-  div.style.cssText = `
-  position: absolute;
-  right: 50px;
-  top: 50px;
-  font-weight: bold;
-  color: red;
-  font-size: 30px;
-  cursor: pointer;
-  `;
-  div.addEventListener("click", () => {
-    bigContainer.remove();
-  });
-  div.innerHTML = `X`;
-  bigContainer.appendChild(myContainer);
-  bigContainer.prepend(div);
-  setBackGround();
-  for (let i = 0; i < copy; i++) {
-    let div = document.createElement("div");
-    div.innerHTML = cart.innerHTML;
-    div.id = clone.id;
-    div.className = clone.className;
-    let flexRadioDefault2 = document.getElementById("flexRadioDefault2");
+//     if (flexRadioDefault2.checked) {
+//       div.classList.add("cells");
+//     } else {
+//       div.classList.remove("cells");
+//     }
 
-    if (flexRadioDefault2.checked) {
-      div.classList.add("cells");
-    } else {
-      div.classList.remove("cells");
-    }
+//     div.style.margin = `${margX.value}px ${margY.value}px`;
+//     div.style.border = `${bR.value}px solid #000`;
+//     div.style.width = "31%";
+//     div.style.pageBreakInside = "avoid";
 
-    div.style.margin = `${margX.value}px ${margY.value}px`;
-    div.style.border = `${bR.value}px solid #000`;
-    div.style.width = "31%";
-    div.style.pageBreakInside = "avoid";
+//     let curFiles = uploadBackground.files;
 
-    let curFiles = uploadBackground.files;
+//     for (const file of curFiles) {
+//       if (validFileType(file)) {
+//         let backgroundImg = URL.createObjectURL(file);
+//         div.style.backgroundImage = `url(${backgroundImg})`;
+//       }
+//     }
+//     myContainer.appendChild(div);
+//     document.body.appendChild(bigContainer);
+//   }
+// };
 
-    for (const file of curFiles) {
-      if (validFileType(file)) {
-        let backgroundImg = URL.createObjectURL(file);
-        div.style.backgroundImage = `url(${backgroundImg})`;
-      }
-    }
-    myContainer.appendChild(div);
-    document.body.appendChild(bigContainer);
-  }
+// switch info
+const infoAction = document.querySelectorAll("#info-action > button"),
+  allCheckBoxes = document.querySelectorAll("#checkInputs .advanced"),
+  editIcon = document.getElementById("iconEdit");
+
+infoAction.forEach((el) => {
+  el.addEventListener("click", removeActiveClass);
+  el.addEventListener("click", manageInuts);
+});
+window.onload = () => {
+  // removeActiveClass();
+  manageInuts();
 };
+//remove active class and add it to the clicked button
+function removeActiveClass() {
+  infoAction.forEach((el) => {
+    el.classList.remove("active");
+    this.classList.add("active");
+  });
+}
+//manage inputs
+
+function manageInuts() {
+  allCheckBoxes.forEach((input) => {
+    input.style.setProperty("display", "none", "important");
+  });
+
+  const inputsClass = document.querySelectorAll(this.dataset.info);
+  inputsClass.forEach((input) => (input.style.display = "block"));
+}

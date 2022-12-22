@@ -94,7 +94,7 @@ serChecker.addEventListener("click", () => {
 
 let dateChecker = document.getElementById("date"),
   dateShow = document.getElementById("dateshow");
-var utc = new Date().toJSON().slice(0, 10).replace(/-/g, "/");
+const utc = new Date().toJSON().slice(0, 10).replace(/-/g, "/");
 
 dateShow.textContent = utc;
 dateChecker.checked = true;
